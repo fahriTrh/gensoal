@@ -27,6 +27,8 @@ export async function answerQuestion({
 
         const data = await response.json();
 
+        return data
+
         // hapus bagian reason/think
         let answer = data.choices[0].message.content
 
