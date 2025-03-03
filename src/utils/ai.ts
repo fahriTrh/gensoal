@@ -49,7 +49,7 @@ export async function answerQuestion({
         console.log(answer)
 
         return answer
-    } catch (err: any) {
+    } catch (err) {
         return NextResponse.json({
             error: err
         }, { status: 400 });
