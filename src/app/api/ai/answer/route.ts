@@ -17,7 +17,9 @@ export async function POST(request: Request) {
 
     try {
 
-        result = JSON.parse(result)
+        if (typeof result === 'string') {
+            result = JSON.parse(result)
+        }
 
     } catch (error: any) {
         return NextResponse.json({
