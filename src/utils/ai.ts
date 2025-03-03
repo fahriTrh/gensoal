@@ -48,6 +48,6 @@ export async function answerQuestion({
 
         return answer
     } catch (err) {
-        console.log(err);
+        return err
     }
 }
