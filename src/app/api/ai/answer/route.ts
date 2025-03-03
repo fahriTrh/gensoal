@@ -16,14 +16,16 @@ export async function POST(request: Request) {
     let result = await answerQuestion({ question, multipleChoise })
 
     try {
-        result = JSON.parse(result)
+
+        if (typeof result === "string") {
+            result = JSON.parse(result)
+        }
 
     } catch (error: any) {
         return NextResponse.json({
-            error: error.message || 'kontol',
+            error: error.message || 'something error',
             question,
-            multipleChoise,
-            result
+            multipleChoise
         }, { status: 400 });
     }
 
