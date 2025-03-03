@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export async function answerQuestion({
     question,
     multipleChoise,
@@ -47,7 +49,9 @@ export async function answerQuestion({
         console.log(answer)
 
         return answer
-    } catch (err) {
-        return err
+    } catch (err: any) {
+        return NextResponse.json({
+            error: err
+        }, { status: 400 });
     }
 }
