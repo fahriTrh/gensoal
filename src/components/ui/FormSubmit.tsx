@@ -25,7 +25,7 @@ export default function FormSubmit() {
 
         axios({
             method: 'post',
-            url: '/api/ai/answer',
+            url: 'gensoal.vercel.app/api/ai/answer',
             // withCredentials: true,
             data: {
                 question: query,

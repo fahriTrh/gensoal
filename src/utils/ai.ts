@@ -9,7 +9,7 @@ export async function answerQuestion({
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer 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",
+                "Authorization": `Bearer ${process.env.OPEN_API_KEY}`,
                 "HTTP-Referer": "<YOUR_SITE_URL>", // Optional.
                 "X-Title": "<YOUR_SITE_NAME>", // Optional.
                 "Content-Type": "application/json"
