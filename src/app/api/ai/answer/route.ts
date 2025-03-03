@@ -18,9 +18,9 @@ export async function POST(request: Request) {
     try {
         result = JSON.parse(result)
 
-    } catch (error) {
+    } catch (error: any) {
         return NextResponse.json({
-            error,
+            error: error.message || 'kontol',
             question,
             multipleChoise,
             result
