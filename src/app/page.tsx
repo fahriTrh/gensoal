@@ -1,6 +1,5 @@
 import Image from "next/image";
 import FormSubmit from '@/components/ui/FormSubmit'
-import { QuestionContainer, QuestionItem } from "@/components/ui/question-container";
 
 
 export default function Home() {
