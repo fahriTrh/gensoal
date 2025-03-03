@@ -49,9 +49,9 @@ export async function answerQuestion({
         console.log(answer)
 
         return answer
-    } catch (err) {
+    } catch (err: any) {
         return NextResponse.json({
-            error: err
+            error: err.message || 'kontol'
         }, { status: 400 });
     }
 }
