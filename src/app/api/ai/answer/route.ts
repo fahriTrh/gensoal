@@ -12,8 +12,6 @@ export async function POST(request: Request) {
         multipleChoise: boolean
     } = await request.json()
 
-    console.log({question, multipleChoise})
-    
 
     let result = await answerQuestion({ question, multipleChoise })
 
@@ -22,7 +20,9 @@ export async function POST(request: Request) {
 
     } catch (error) {
         return NextResponse.json({
-            error
+            error,
+            question,
+            multipleChoise
         }, { status: 400 });
     }
 
