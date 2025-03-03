@@ -22,6 +22,7 @@ export default function FormSubmit() {
         e.preventDefault()
 
         setIsLoading(true)
+        setResult([])
 
         axios({
             method: 'post',
@@ -80,14 +81,30 @@ export default function FormSubmit() {
             <QuestionContainer isLoading={isLoading} className="mt-5">
                 {
                     (result.length > 0 || isLoading) && (
-                        <QuestionItem
-                            isLoading={isLoading}
-                            question="apakah yang dimaksud lorem?"
-                            answer="lorem adalah adalah"
-                            order={1}
-                        />
+                        result.length > 0 ? (
+
+                            result.map((quest : any, i: number) => (
+                                <QuestionItem
+                                    key={i}
+                                    isLoading={isLoading}
+                                    question={quest.question}
+                                    answer={quest.answer}
+                                    option={quest.option}
+                                    order={1}
+                                />
+                            ))
+
+                        ) : (
+                            <QuestionItem
+                                isLoading={isLoading}
+                                question=""
+                                answer=""
+                                order={0}
+                            />
+                        )
                     )
                 }
+
             </QuestionContainer>
 
         </>

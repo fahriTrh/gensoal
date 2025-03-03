@@ -37,12 +37,14 @@ function QuestionItem(
     {
         question,
         answer,
+        option,
         order,
         isLoading
     }:
         {
             question: string,
             answer: string,
+            option?: string[],
             order: number,
             isLoading: boolean
         }
@@ -72,8 +74,18 @@ function QuestionItem(
                         ) : (
                             <>
                                 <p>{question}</p>
+                                {
+                                    option && Array.isArray(option) && (
+                                        option.map(opt => (
+                                            <p key={opt} className="text-sm mt-3 text-slate-800 dark:text-slate-300">
+                                                {opt}
+                                            </p>
+                                        ))
+                                    )
+                                }
+
                                 <p className="text-sm mt-3 text-slate-700 dark:text-slate-300">
-                                    <span>Jawaban Benar: </span>{answer}
+                                    <span className="font-semibold">Jawaban Benar: </span>{answer}
                                 </p>
                             </>
                         )}
