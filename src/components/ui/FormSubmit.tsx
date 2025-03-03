@@ -34,9 +34,9 @@ export default function FormSubmit() {
         })
             .then(response => {
 
-                if (!Array.isArray(response.data.result)) {
-                    throw new Error('The result is not an array')
-                }
+                // if (!Array.isArray(response.data.result)) {
+                //     throw new Error('The result is not an array')
+                // }
 
                 setIsLoading(false)
 
