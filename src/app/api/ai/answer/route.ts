@@ -12,6 +12,9 @@ export async function POST(request: Request) {
         multipleChoise: boolean
     } = await request.json()
 
+    console.log({question, multipleChoise})
+    
+
     let result = await answerQuestion({ question, multipleChoise })
 
     try {
