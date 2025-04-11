@@ -13,6 +13,7 @@ export default function FormSubmit() {
     const [query, setQuery] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(false)
     const [result, setResult] = useState([])
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         console.log(result);
@@ -21,6 +22,7 @@ export default function FormSubmit() {
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
+        setIsError(false)
         setIsLoading(true)
         setResult([])
 
@@ -47,6 +49,7 @@ export default function FormSubmit() {
             .catch((error) => {
                 console.error('Error:', error)
                 setIsLoading(false)
+                setIsError(true)
             })
     }
 
@@ -78,34 +81,35 @@ export default function FormSubmit() {
                 </Button>
             </form>
 
-            <QuestionContainer isLoading={isLoading} className="mt-5">
-                {
-                    (result.length > 0 || isLoading) && (
-                        result.length > 0 ? (
-
-                            result.map((quest : any, i: number) => (
+            {
+                !isError ? (
+                    <QuestionContainer isLoading={isLoading} className="mt-5">
+                        {(result.length > 0 || isLoading) ? (
+                            result.length > 0 ? (
+                                result.map((quest: any, i: number) => (
+                                    <QuestionItem
+                                        key={i}
+                                        isLoading={isLoading}
+                                        question={quest.question}
+                                        answer={quest.answer}
+                                        option={quest.option}
+                                        order={i + 1}
+                                    />
+                                ))
+                            ) : (
                                 <QuestionItem
-                                    key={i}
                                     isLoading={isLoading}
-                                    question={quest.question}
-                                    answer={quest.answer}
-                                    option={quest.option}
-                                    order={1}
+                                    question=""
+                                    answer=""
+                                    order={0}
                                 />
-                            ))
-
-                        ) : (
-                            <QuestionItem
-                                isLoading={isLoading}
-                                question=""
-                                answer=""
-                                order={0}
-                            />
-                        )
-                    )
-                }
-
-            </QuestionContainer>
+                            )
+                        ) : null}
+                    </QuestionContainer>
+                ) : (
+                    <h1>something error</h1>
+                )
+            }
 
         </>
     )
