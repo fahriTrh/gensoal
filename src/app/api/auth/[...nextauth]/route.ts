@@ -10,28 +10,28 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      allowDangerousEmailAccountLinking: true
+      // allowDangerousEmailAccountLinking: true
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  callbacks: {
-    async signIn({ user }) {
-      const existingUser = await prisma.user.findUnique({
-        where: { email: user.email! }
-      })
+  // callbacks: {
+  //   async signIn({ user }) {
+  //     const existingUser = await prisma.user.findUnique({
+  //       where: { email: user.email! }
+  //     })
 
-      if (!existingUser) {
-        await prisma.user.create({
-          data: {
-            email: user.email!,
-            name: user.name ?? "",
-          },
-        })
-      }
+  //     if (!existingUser) {
+  //       await prisma.user.create({
+  //         data: {
+  //           email: user.email!,
+  //           name: user.name ?? "",
+  //         },
+  //       })
+  //     }
 
-      return true
-    }
-  }
+  //     return true
+  //   }
+  // }
 };
 
 const handler = NextAuth(authOptions);
