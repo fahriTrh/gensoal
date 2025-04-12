@@ -13,25 +13,25 @@ const authOptions: NextAuthOptions = {
       // allowDangerousEmailAccountLinking: true
     }),
   ],
-  adapter: PrismaAdapter(prisma),
-  // callbacks: {
-  //   async signIn({ user }) {
-  //     const existingUser = await prisma.user.findUnique({
-  //       where: { email: user.email! }
-  //     })
+  // adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async signIn({ user }) {
+      const existingUser = await prisma.user.findUnique({
+        where: { email: user.email! }
+      })
 
-  //     if (!existingUser) {
-  //       await prisma.user.create({
-  //         data: {
-  //           email: user.email!,
-  //           name: user.name ?? "",
-  //         },
-  //       })
-  //     }
+      if (!existingUser) {
+        await prisma.user.create({
+          data: {
+            email: user.email!,
+            name: user.name ?? "",
+          },
+        })
+      }
 
-  //     return true
-  //   }
-  // }
+      return true
+    }
+  }
 };
 
 const handler = NextAuth(authOptions);
