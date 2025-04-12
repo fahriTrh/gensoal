@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight } from 'lucide-react';
 import axios from 'axios'
 import { QuestionContainer, QuestionItem } from "@/components/ui/question-container";
+import { signIn, useSession } from "next-auth/react";
 
 export default function FormSubmit() {
     const [isMultipleChoise, setIsMultipleChoise] = useState(false)
@@ -15,12 +16,19 @@ export default function FormSubmit() {
     const [result, setResult] = useState([])
     const [isError, setIsError] = useState(false)
 
+    const { data: session } = useSession()
+
     useEffect(() => {
         console.log(result);
     }, [result]);
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if (!session) {
+            signIn()
+            return
+        }
 
         setIsError(false)
         setIsLoading(true)
@@ -72,7 +80,7 @@ export default function FormSubmit() {
                 </div>
 
                 <Button
-                    disabled={!query || isLoading ? true : false}
+                    disabled={!query?.trim() || isLoading ? true : false}
                     size='lg'
                     className="hover:cursor-pointer mt-2 bg-blue-900 hover:bg-blue-800 text-slate-200">
 

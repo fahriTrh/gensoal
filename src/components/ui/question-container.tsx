@@ -93,7 +93,7 @@ function QuestionItem(
                 </div>
             </CardContent>
             <CardFooter>
-                {
+                {/* {
                     isLoading ? (
                         <Skeleton className="ml-auto ">
                             <Button variant='secondary' size='sm'>
@@ -106,7 +106,7 @@ function QuestionItem(
                             <span className="text-sm">Regenerate Jawaban</span>
                         </Button>
                     )
-                }
+                } */}
             </CardFooter>
         </Card >
 
