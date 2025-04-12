@@ -8,6 +8,7 @@ import { ChevronRight } from 'lucide-react';
 import axios from 'axios'
 import { QuestionContainer, QuestionItem } from "@/components/ui/question-container";
 import { signIn, useSession } from "next-auth/react";
+import ErrorAlert from './ErrorAlert';
 
 export default function FormSubmit() {
     const [isMultipleChoise, setIsMultipleChoise] = useState(false)
@@ -115,7 +116,7 @@ export default function FormSubmit() {
                         ) : null}
                     </QuestionContainer>
                 ) : (
-                    <h1>something error</h1>
+                    <ErrorAlert message='Oops! Something went wrong while generating your question.' />
                 )
             }
 
