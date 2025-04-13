@@ -44,7 +44,7 @@ export async function answerQuestion({
             answer = answer.replace(regex, ''); // Menghapus kemunculan elemen dari blacklist
         }
 
-        console.log(answer)
+        // console.log(answer)
 
         return answer
     } catch (err: any) {

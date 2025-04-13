@@ -19,9 +19,9 @@ export default function FormSubmit() {
 
     const { data: session } = useSession()
 
-    useEffect(() => {
-        console.log(result);
-    }, [result]);
+    // useEffect(() => {
+    //     console.log(result);
+    // }, [result]);
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -53,10 +53,10 @@ export default function FormSubmit() {
                 setIsLoading(false)
 
                 setResult(response.data.result)
-                console.log(result);
+                // console.log(result);
             })
             .catch((error) => {
-                console.error('Error:', error)
+                // console.error('Error:', error)
                 setIsLoading(false)
                 setIsError(true)
             })
